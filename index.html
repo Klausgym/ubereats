@@ -1,383 +1,287 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DoorDash – $500 Reward</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#020617;
-      --surface:#020818;
-      --panel:#050b1d;
-      --text:#f9fafb;
-      --muted:#a1a1aa;
-      --accent:#ff3b30;      /* DoorDash red */
-      --accent-dark:#c01f10;
-      --border:#111827;
-      --danger:#ef4444;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DoorDash $500 Reward</title>
 
-      --card-from:#ff4b2b;
-      --card-to:#c81210;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
+<style>
+:root{
+  --bg:#020617;
+  --surface:#020818;
+  --panel:#050b1d;
+  --text:#f9fafb;
+  --muted:#9ca3af;
+  --accent:#ff3b30;
+  --accent-dark:#c81e11;
+  --border:#111827;
+}
 
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:
-        radial-gradient(circle at top, #3f130e 0, #020617 45%, #000 100%);
-      color:var(--text);
-      line-height:1.5;
-      -webkit-font-smoothing:antialiased;
-    }
+*{ box-sizing:border-box; }
 
-    .page{
-      min-height:100vh;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding:32px 16px 40px;
-    }
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:radial-gradient(circle at top,#3f130e 0,#020617 45%,#000 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
 
-    .container{
-      width:100%;
-      max-width:430px;
-      text-align:center;
-    }
+.page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  padding:32px 16px 40px;
+}
 
-    /* DOORDASH CARD – dimensiune fixă, arată ca un card real */
-    .reward-card{
-      margin:0 auto;
-      max-width:360px;
-      width:100%;
-      height:200px;                 /* => proporție de card */
-      border-radius:18px;
-      padding:18px 20px;
-      background:linear-gradient(135deg,var(--card-from),var(--card-to));
-      box-shadow:0 20px 45px rgba(0,0,0,.75);
-      border:1px solid rgba(248,250,252,.12);
-      color:#fff7ed;
-      position:relative;
-      overflow:hidden;
+.container{
+  width:100%;
+  max-width:430px;
+  text-align:center;
+}
 
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      align-items:flex-start;
-    }
-    .reward-card::before{
-      content:""; position:absolute; inset:-20%;
-      background:
-        radial-gradient(circle at 0 0, rgba(248,250,252,.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(254,226,226,.4), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .rc-content{
-      position:relative;
-      width:100%;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .rc-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .rc-amount{
-      font-size:32px;
-      font-weight:800;
-      color:#ffffff;
-      line-height:1;
-    }
-    .rc-amount sup{
-      font-size:18px;
-      top:-0.35em;
-      position:relative;
-    }
-    .rc-tag{
-      margin-top:6px;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:#ffe4e6;
-    }
-    .rc-pill{
-      font-size:11px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(254,226,226,.7);
-      background:rgba(0,0,0,.12);
-      color:#fee2e2;
-      white-space:nowrap;
-    }
-    .rc-brand{
-      font-size:20px;
-      font-weight:800;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:#ffffff;
-    }
+/* ===== CARD ===== */
+.reward-card{
+  position:relative;
+  max-width:360px;
+  width:100%;
+  height:190px;
+  margin:0 auto;
+  border-radius:18px;
+  padding:16px 18px;
+  background:linear-gradient(135deg,#ff4b2b,#c81210);
+  box-shadow:0 22px 45px rgba(0,0,0,.75);
+  border:1px solid rgba(255,255,255,.15);
+  overflow:hidden;
+}
 
-    /* TIMER */
-    .timer-bar{
-      margin-top:20px;
-      background:var(--surface);
-      border-radius:999px;
-      padding:10px 18px;
-      border:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      font-size:14px;
-      color:#e5e7eb;
-      box-shadow:0 14px 32px rgba(0,0,0,.6);
-    }
-    .timer-dot{
-      width:8px; height:8px;
-      border-radius:50%;
-      background:#f97316;
-      box-shadow:0 0 0 4px rgba(249,115,22,.35);
-    }
-    .timer-value{
-      font-variant-numeric:tabular-nums;
-      font-weight:600;
-    }
+.reward-card::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:
+    radial-gradient(circle at top left,rgba(255,255,255,.18),transparent 55%),
+    radial-gradient(circle at bottom right,rgba(255,200,200,.35),transparent 55%);
+  pointer-events:none;
+}
 
-    /* CTA BUTTON */
-    .cta{
-      margin-top:16px;
-      width:100%;
-      padding:14px 24px;
-      border-radius:999px;
-      font-size:16px;
-      font-weight:700;
-      text-transform:uppercase;
-      cursor:pointer;
-      text-decoration:none;
-      color:#ffffff;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-      box-shadow:0 18px 40px rgba(255,59,48,.45);
-      display:inline-block;
-      transition:transform .08s ease, filter .16s ease, box-shadow .16s ease;
-    }
-    .cta:hover{
-      filter:brightness(1.05);
-      box-shadow:0 22px 48px rgba(255,59,48,.65);
-    }
-    .cta:active{ transform:translateY(1px); }
+.rc-amount{
+  position:absolute;
+  top:14px;
+  left:16px;
+  font-size:30px;
+  font-weight:800;
+  color:#ffffff;
+}
 
-    /* PANELS */
-    .panel{
-      margin-top:22px;
-      background:var(--panel);
-      border-radius:18px;
-      padding:18px;
-      border:1px solid var(--border);
-      box-shadow:0 18px 40px rgba(0,0,0,.7);
-      text-align:left;
-    }
-    .panel h2{
-      margin:0 0 10px;
-      font-size:16px;
-      font-weight:700;
-    }
+.rc-amount sup{
+  font-size:16px;
+  position:relative;
+  top:-0.45em;
+}
 
-    .qs-list{
-      list-style:none;
-      padding:0; margin:0;
-      display:grid;
-      gap:10px;
-    }
-    .qs-item{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      font-size:14px;
-    }
-    .qs-icon{
-      width:18px; height:18px;
-      border-radius:999px;
-      border:2px solid #22c55e;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:11px;
-      color:#22c55e;
-      margin-top:2px;
-    }
-    .qs-text{ color:#e5e7eb; }
-    .qs-sub{
-      font-size:12px;
-      color:var(--muted);
-      display:block;
-    }
-    .qs-required{
-      width:8px; height:8px;
-      border-radius:50%;
-      background:var(--danger);
-      margin-left:auto;
-      margin-top:4px;
-    }
+.rc-brand{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:.22em;
+  color:#ffffff;
+}
 
-    /* FAQ */
-    .faq-item{ margin-bottom:10px; }
-    .faq-q{
-      font-weight:600;
-      font-size:14px;
-      color:#e5e7eb;
-      margin-bottom:2px;
-    }
-    .faq-a{
-      font-size:13px;
-      color:var(--muted);
-    }
+/* ===== TIMER ===== */
+.timer-bar{
+  margin-top:20px;
+  background:var(--surface);
+  border-radius:999px;
+  padding:10px 18px;
+  border:1px solid var(--border);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  box-shadow:0 14px 32px rgba(0,0,0,.6);
+}
 
-    .bottom-cta{ margin-top:24px; }
+.timer-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#f97316;
+  box-shadow:0 0 0 4px rgba(249,115,22,.35);
+}
 
-    .foot{
-      margin-top:8px;
-      font-size:11px;
-      color:#6b7280;
-      text-align:center;
-    }
+.timer-value{
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
+}
 
-    @media (max-width:480px){
-      .page{ padding:24px 12px 32px; }
-      .container{ max-width:100%; }
-      .reward-card{ height:180px; }
-      .rc-amount{ font-size:28px; }
-      .rc-brand{ font-size:18px; }
-    }
-  </style>
+/* ===== CTA ===== */
+.cta{
+  margin-top:16px;
+  width:100%;
+  padding:14px 24px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:700;
+  text-transform:uppercase;
+  color:#ffffff;
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  box-shadow:0 18px 40px rgba(255,59,48,.45);
+  text-decoration:none;
+  display:inline-block;
+  transition:.15s ease;
+}
+
+.cta:hover{
+  box-shadow:0 22px 48px rgba(255,59,48,.65);
+}
+
+/* ===== PANELS ===== */
+.panel{
+  margin-top:22px;
+  background:var(--panel);
+  border-radius:18px;
+  padding:18px;
+  border:1px solid var(--border);
+  box-shadow:0 18px 40px rgba(0,0,0,.7);
+  text-align:left;
+}
+
+.panel h2{
+  margin:0 0 10px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+}
+
+.list li{
+  display:flex;
+  gap:10px;
+  font-size:14px;
+}
+
+.check{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:2px solid #22c55e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  color:#22c55e;
+  margin-top:2px;
+}
+
+.sub{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.footer{
+  margin-top:10px;
+  font-size:11px;
+  color:#6b7280;
+  text-align:center;
+}
+
+@media(max-width:480px){
+  .reward-card{ height:175px; }
+  .rc-brand{ font-size:20px; }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="page">
-    <div class="container">
+<div class="page">
+<div class="container">
 
-      <!-- CARD DoorDash simplu, proporții de card -->
-      <div class="reward-card" aria-label="$500 DoorDash reward card">
-        <div class="rc-content">
-          <div class="rc-top">
-            <div>
-              <div class="rc-amount"><sup>$</sup>500</div>
-              <div class="rc-tag">Food delivery reward</div>
-            </div>
-            <div class="rc-pill">Limited-time offer</div>
-          </div>
-
-          <div class="rc-brand">DOORDASH</div>
-        </div>
-      </div>
-
-      <!-- Timer -->
-      <div class="timer-bar">
-        <span class="timer-dot"></span>
-        <span>Offer expires in</span>
-        <span id="timer" class="timer-value">30:00</span>
-      </div>
-
-      <!-- CTA principal -->
-      <a
-        class="cta"
-        href="https://trkfy.org/aff_c?offer_id=455&aff_id=122650&source=doordash"
-        target="_blank"
-        rel="nofollow noopener"
-      >
-        Claim Now
-      </a>
-
-      <!-- Quick Start Guide -->
-      <section class="panel">
-        <h2>Quick Start Guide →</h2>
-        <ul class="qs-list">
-          <li class="qs-item">
-            <div class="qs-icon">✓</div>
-            <div class="qs-text">
-              Complete 3–5 required deals
-              <span class="qs-sub">Earn up to $500</span>
-            </div>
-          </li>
-          <li class="qs-item">
-            <div class="qs-icon">✓</div>
-            <div class="qs-text">
-              Provide a valid email address
-              <span class="qs-sub">For instant notification</span>
-            </div>
-          </li>
-          <li class="qs-item">
-            <div class="qs-icon">✓</div>
-            <div class="qs-text">
-              Ensure you are 18 years or older
-              <span class="qs-sub">Required</span>
-            </div>
-            <div class="qs-required"></div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- FAQ -->
-      <section class="panel">
-        <h2>Common Questions →</h2>
-
-        <div class="faq-item">
-          <div class="faq-q">When do I get my giftcard?</div>
-          <div class="faq-a">
-            Giftcards are processed within 24–48 hours after completing all required deals.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">Do I really need to complete 3–5 deals?</div>
-          <div class="faq-a">
-            Yes — this is required to qualify for the reward.
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA jos -->
-      <div class="bottom-cta">
-        <a
-          class="cta"
-          href="https://trkfy.org/aff_c?offer_id=455&aff_id=122650&source=doordash"
-          target="_blank"
-          rel="nofollow noopener"
-        >
-          Claim Now
-        </a>
-      </div>
-
- 
-
-    </div>
+  <!-- CARD -->
+  <div class="reward-card">
+    <div class="rc-amount"><sup>$</sup>500</div>
+    <div class="rc-brand">DOORDASH</div>
   </div>
 
-  <!-- Countdown 30:00 -->
-  <script>
-    (function(){
-      const el = document.getElementById('timer');
-      let time = 30 * 60; // 30 minutes in seconds
-      function tick(){
-        const m = Math.floor(time / 60);
-        const s = time % 60;
-        el.textContent =
-          String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-        if(time > 0) time--;
-      }
-      tick();
-      setInterval(tick, 1000);
-    })();
-  </script>
+  <!-- TIMER -->
+  <div class="timer-bar">
+    <span class="timer-dot"></span>
+    <span>Offer expires in</span>
+    <span id="timer" class="timer-value">30:00</span>
+  </div>
+
+  <!-- CTA -->
+  <a class="cta"
+     href="https://trkfy.org/aff_c?offer_id=455&aff_id=122650&source=doordash"
+     target="_blank"
+     rel="nofollow noopener">
+     Claim Now
+  </a>
+
+  <!-- QUICK START -->
+  <div class="panel">
+    <h2>Quick Start Guide →</h2>
+    <ul class="list">
+      <li><span class="check">✓</span>Complete 3–5 required deals <span class="sub">Earn up to $500</span></li>
+      <li><span class="check">✓</span>Provide a valid email address <span class="sub">Instant notification</span></li>
+      <li><span class="check">✓</span>Ensure you are 18 years or older <span class="sub">Required</span></li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="panel">
+    <h2>Common Questions →</h2>
+    <p><strong>When do I get my reward?</strong><br>
+    <span class="sub">Processed within 24–48 hours after completion.</span></p>
+
+    <p><strong>Do I need to complete all deals?</strong><br>
+    <span class="sub">Yes, all required steps must be completed.</span></p>
+  </div>
+
+  <!-- CTA BOTTOM -->
+  <a class="cta"
+     href="https://trkfy.org/aff_c?offer_id=455&aff_id=122650&source=doordash"
+     target="_blank"
+     rel="nofollow noopener">
+     Claim Now
+  </a>
+
+  <div class="footer">
+  </div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  const el=document.getElementById("timer");
+  let t=30*60;
+  setInterval(()=>{
+    const m=Math.floor(t/60);
+    const s=t%60;
+    el.textContent=
+      String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+    if(t>0)t--;
+  },1000);
+})();
+</script>
 
 </body>
 </html>
-
-
