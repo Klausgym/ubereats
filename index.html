@@ -11,14 +11,13 @@
 
 <style>
 :root{
-  --bg:#020617;
-  --surface:#020818;
-  --panel:#050b1d;
-  --text:#f9fafb;
-  --muted:#9ca3af;
-  --accent:#ff3b30;
-  --accent-dark:#c81e11;
-  --border:#111827;
+  --dd-red:#EB1700;
+  --dd-red-dark:#C81000;
+  --dd-bg:#FFFFFF;
+  --dd-surface:#F7F7F7;
+  --dd-border:#E5E7EB;
+  --dd-text:#111827;
+  --dd-muted:#6B7280;
 }
 
 *{ box-sizing:border-box; }
@@ -26,9 +25,8 @@
 body{
   margin:0;
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  background:radial-gradient(circle at top,#3f130e 0,#020617 45%,#000 100%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
+  background:var(--dd-bg);
+  color:var(--dd-text);
 }
 
 .page{
@@ -44,79 +42,61 @@ body{
   text-align:center;
 }
 
-/* ===== CARD ===== */
-.reward-card{
+/* ===== CARD IMAGE ===== */
+.card-wrapper{
   position:relative;
   max-width:360px;
-  width:100%;
-  height:190px;
   margin:0 auto;
-  border-radius:18px;
-  padding:16px 18px;
-  background:linear-gradient(135deg,#ff4b2b,#c81210);
-  box-shadow:0 22px 45px rgba(0,0,0,.75);
-  border:1px solid rgba(255,255,255,.15);
-  overflow:hidden;
 }
 
-.reward-card::before{
-  content:"";
-  position:absolute;
-  inset:-30%;
-  background:
-    radial-gradient(circle at top left,rgba(255,255,255,.18),transparent 55%),
-    radial-gradient(circle at bottom right,rgba(255,200,200,.35),transparent 55%);
-  pointer-events:none;
+.card-wrapper img{
+  width:100%;
+  height:auto;
+  border-radius:16px;
+  box-shadow:0 16px 32px rgba(0,0,0,.18);
+  display:block;
 }
 
-.rc-amount{
+/* $500 overlay */
+.card-value{
   position:absolute;
-  top:14px;
-  left:16px;
-  font-size:30px;
-  font-weight:800;
+  top:12px;
+  left:14px;
   color:#ffffff;
+  font-size:26px;
+  font-weight:800;
+  text-shadow:0 2px 6px rgba(0,0,0,.45);
+  background:none;
+  padding:0;
 }
 
-.rc-amount sup{
-  font-size:16px;
+}
+
+.card-value sup{
+  font-size:12px;
   position:relative;
-  top:-0.45em;
-}
-
-.rc-brand{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  font-weight:800;
-  letter-spacing:.22em;
-  color:#ffffff;
+  top:-0.4em;
 }
 
 /* ===== TIMER ===== */
 .timer-bar{
   margin-top:20px;
-  background:var(--surface);
+  background:var(--dd-surface);
   border-radius:999px;
   padding:10px 18px;
-  border:1px solid var(--border);
+  border:1px solid var(--dd-border);
   display:flex;
   justify-content:center;
   align-items:center;
   gap:8px;
   font-size:14px;
-  box-shadow:0 14px 32px rgba(0,0,0,.6);
 }
 
 .timer-dot{
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#f97316;
-  box-shadow:0 0 0 4px rgba(249,115,22,.35);
+  background:#F97316;
 }
 
 .timer-value{
@@ -134,25 +114,23 @@ body{
   font-weight:700;
   text-transform:uppercase;
   color:#ffffff;
-  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-  box-shadow:0 18px 40px rgba(255,59,48,.45);
+  background:var(--dd-red);
   text-decoration:none;
   display:inline-block;
-  transition:.15s ease;
+  transition:background .15s ease;
 }
 
 .cta:hover{
-  box-shadow:0 22px 48px rgba(255,59,48,.65);
+  background:var(--dd-red-dark);
 }
 
 /* ===== PANELS ===== */
 .panel{
   margin-top:22px;
-  background:var(--panel);
-  border-radius:18px;
+  background:var(--dd-surface);
+  border-radius:16px;
   padding:18px;
-  border:1px solid var(--border);
-  box-shadow:0 18px 40px rgba(0,0,0,.7);
+  border:1px solid var(--dd-border);
   text-align:left;
 }
 
@@ -192,19 +170,18 @@ body{
 .sub{
   display:block;
   font-size:12px;
-  color:var(--muted);
+  color:var(--dd-muted);
 }
 
 .footer{
   margin-top:10px;
   font-size:11px;
-  color:#6b7280;
+  color:#9CA3AF;
   text-align:center;
 }
 
 @media(max-width:480px){
-  .reward-card{ height:175px; }
-  .rc-brand{ font-size:20px; }
+  .card-value{ font-size:18px; }
 }
 </style>
 </head>
@@ -214,10 +191,13 @@ body{
 <div class="page">
 <div class="container">
 
-  <!-- CARD -->
-  <div class="reward-card">
-    <div class="rc-amount"><sup>$</sup>500</div>
-    <div class="rc-brand">DOORDASH</div>
+  <!-- GIFT CARD REAL -->
+  <div class="card-wrapper">
+    <span class="card-value"><sup>$</sup>500</span>
+    <img
+      src="https://cdn.bitrefill.com/primg/w360h216/doordash-usa.webp"
+      alt="DoorDash Gift Card"
+    >
   </div>
 
   <!-- TIMER -->
@@ -237,7 +217,7 @@ body{
 
   <!-- QUICK START -->
   <div class="panel">
-    <h2>Quick Start Guide →</h2>
+    <h2>Quick Start Guide</h2>
     <ul class="list">
       <li><span class="check">✓</span>Complete 3–5 required deals <span class="sub">Earn up to $500</span></li>
       <li><span class="check">✓</span>Provide a valid email address <span class="sub">Instant notification</span></li>
@@ -247,7 +227,7 @@ body{
 
   <!-- FAQ -->
   <div class="panel">
-    <h2>Common Questions →</h2>
+    <h2>Common Questions</h2>
     <p><strong>When do I get my reward?</strong><br>
     <span class="sub">Processed within 24–48 hours after completion.</span></p>
 
@@ -264,6 +244,7 @@ body{
   </a>
 
   <div class="footer">
+    
   </div>
 
 </div>
@@ -276,7 +257,7 @@ body{
   setInterval(()=>{
     const m=Math.floor(t/60);
     const s=t%60;
-    el.textContent=
+    el.textContent =
       String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
     if(t>0)t--;
   },1000);
@@ -285,3 +266,4 @@ body{
 
 </body>
 </html>
+
